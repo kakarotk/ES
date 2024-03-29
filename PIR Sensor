@@ -1,0 +1,35 @@
+int red = 5;
+int buzz = 8 ;
+int PIR= 12;
+int pinstate= LOW;
+int val = 0;
+
+void setup(){
+  pinMode(red,OUTPUT);
+  pinMode(buzz,OUTPUT);
+  pinMode(PIR,INPUT);
+  Serial.begin(9600);
+  
+}
+
+void loop(){
+  val= digitalRead(PIR);
+  if(val == HIGH){
+    if(pinstate == LOW){
+      digitalWrite(red,HIGH);
+      digitalWrite(buzz,HIGH);
+      Serial.println("Motion detected ");
+      pinstate=HIGH;
+    }
+  }
+  else{
+    if(pinstate == HIGH){
+      digitalWrite(red,LOW);
+      digitalWrite(buzz,LOW);
+      Serial.println("Motion Stopped");
+      pinstate=LOW;
+    }
+  }
+  delay(1000);
+}
+  
