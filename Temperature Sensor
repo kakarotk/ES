@@ -1,0 +1,32 @@
+const int TMP_Sensor = A0;
+int red = 2;
+int green = 3;
+int buzzer = 4;
+int x;
+
+void setup() {
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(TMP_Sensor, INPUT);
+  pinMode(buzzer, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  x = analogRead(TMP_Sensor);
+  float voltage = (x * 5.0) / 1024.0; // Corrected floating-point division
+  float temp = (voltage - 0.5) * 100.0;
+  Serial.print(temp);
+  Serial.println(" C"); // Added units for clarity
+  
+  if (temp >= 25) {
+    digitalWrite(red, HIGH); // Corrected function name
+    digitalWrite(buzzer, HIGH); // Corrected function name
+    digitalWrite(green, LOW); // Corrected function name
+  } else {
+    digitalWrite(green, HIGH); // Corrected function name
+    digitalWrite(red, LOW); // Corrected function name
+    digitalWrite(buzzer, LOW); // Corrected function name
+  }
+  delay(2000);
+}
