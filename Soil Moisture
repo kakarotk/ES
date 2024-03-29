@@ -1,0 +1,34 @@
+int red = 6;
+int green = 3;
+int dc = 8;
+int sms= A1;
+float x;
+float moist;
+
+void setup(){
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(dc,OUTPUT);
+  pinMode(sms,INPUT);
+  Serial.begin(9600);
+}
+  void loop(){
+    x = analogRead(sms);
+    moist = x*500.0/1003.0;;
+    if (moist <=300){
+      digitalWrite(red,HIGH);
+      digitalWrite(dc,HIGH);
+      digitalWrite(green,LOW);
+      Serial.println(moist);
+      Serial.println("Sprinkler On");
+    }
+    else{
+      digitalWrite(green,HIGH);
+      digitalWrite(red,LOW);
+      digitalWrite(dc, LOW);
+      Serial.println(moist);
+      Serial.println("Sprinkler Off");
+    }
+    
+    delay(1000);
+  }
