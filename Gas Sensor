@@ -1,0 +1,47 @@
+int red=10;
+int green = 4;
+int buzz= 6;
+int dc = 11;
+int gas = A1;
+int res;
+void setup (){
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(buzz,OUTPUT);
+  pinMode(dc,OUTPUT);
+  pinMode(gas,INPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+  res=analogRead(gas);
+  res= map(res,0,1023,0,255);
+  Serial.print("Gas: ");
+  Serial.println(res);
+  
+  if(res>=20){
+    digitalWrite(red,HIGH);
+    digitalWrite(buzz,HIGH);
+    digitalWrite(dc,HIGH);
+    digitalWrite(green,LOW);
+    
+  }
+    
+    else if( res  <= 49 && res >= 25){
+    digitalWrite(green,HIGH);
+    digitalWrite(buzz,LOW);
+    digitalWrite(dc,HIGH);
+    digitalWrite(red,LOW);
+     
+    }
+    
+  
+  
+  else{
+    digitalWrite(green,LOW);
+    digitalWrite(buzz,LOW);
+    digitalWrite(dc,LOW);
+    digitalWrite(red,LOW);
+  }
+  delay (2000);
+}
