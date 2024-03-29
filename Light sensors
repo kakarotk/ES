@@ -1,0 +1,26 @@
+// C++ code
+//
+int lb1=A3;
+int bulb=7;
+int val=0;
+
+void setup()
+{
+  pinMode(bulb, OUTPUT);
+  pinMode(lb1, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  	val=analogRead(lb1);
+  if (val>500){
+  	digitalWrite(bulb,0);
+  }
+  
+  else{
+    digitalWrite(bulb,1);
+    
+    Serial.write(val);
+  }
+}
