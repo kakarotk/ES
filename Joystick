@@ -1,0 +1,39 @@
+int X=0;
+int Y=0;
+int Z=0;
+int p1=A0;
+int p2=A1;
+int p3=A2;
+void setup()
+{
+  pinMode(11,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(p1,INPUT);
+  pinMode(p2,INPUT);
+  pinMode(p3,INPUT);
+}
+void loop()
+{
+  X=analogRead(p1);
+  if(X>=510&&X<=1023)
+  {
+    analogWrite(11,255);
+    analogWrite(10,0);
+    analogWrite(9,0);
+  }
+  Y=analogRead(p2);
+  if(Y>=510&&Y<=1023)
+  {
+    analogWrite(11,0);
+    analogWrite(10,255);
+    analogWrite(9,0);
+  }
+   Z=analogRead(p3);
+  if(Z>=510&&Y<=1023)
+  {
+   analogWrite(11,0);
+    analogWrite(10,0);
+    analogWrite(9,255);
+  }
+}
